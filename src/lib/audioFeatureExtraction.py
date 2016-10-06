@@ -203,6 +203,7 @@ def mfccInitFilterBanks(fs, nfft):
     heights = 2./(freqs[2:] - freqs[0:-2])
 
     # Compute filterbank coeff (in fft domain, in bins) 
+    print("I is " , int(nFiltTotal), "NNFT" , int(nfft))
     fbank = numpy.zeros(int(nFiltTotal), int(nfft))
     nfreqs = numpy.arange(nfft) / (1. * nfft) * fs
 
