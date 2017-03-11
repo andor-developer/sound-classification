@@ -1,3 +1,8 @@
+from matplotlib.colors import ListedColormap
+import numpy as np
+import matplotlib.pyplot as plt
+
+
 def Visualize2dSegmentation(classifier):
     
     # Create color maps

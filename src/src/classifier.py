@@ -1,3 +1,16 @@
+import logging
+import numpy as np
+import visualization
+import warnings
+# Classification and evaluation
+import sklearn
+from sklearn.preprocessing import StandardScaler
+from sklearn import svm
+from sklearn.cross_validation import StratifiedKFold, ShuffleSplit, cross_val_score
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier,KNeighborsRegressor
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix
 """ SVM Approach has a couple of weaknesses. 
 
 Advantages:
@@ -72,7 +85,7 @@ class ClassifierTester():
         testSVM()
     
     """ Quick test to check how the program is analyzing the decision boundaries. """
-    def testKNN():
+    def testKNN(self):
         X = np.array([[0, 0], [1, 1], [0, 10], [1, 11], [4,3], [4,5]], np.int32)
         y = ["apple", "pear", "apple", "pear", "pear", "pear"]
         y = np.array(y)
@@ -83,11 +96,11 @@ class ClassifierTester():
         pred_input = [0,2]
         prediction = knn.Predict(X)
         print("KNN Prediction is ", prediction)
-        Visualize2dSegmentation(knn)
+        visualization.Visualize2dSegmentation(knn)
     
         
     """ Quick test to check how the program is analyzing the decision boundaries. """
-    def testSVM():
+    def testSVM(self):
         
         warnings.filterwarnings('ignore')
         X = np.array([[0, 0], [1, 1], [0, 10], [1, 11], [4,3], [4,5]], np.int32)
@@ -100,8 +113,16 @@ class ClassifierTester():
         
         pred_input = [0,2]
         prediction = svm.Predict(pred_input)
-        Visualize2dSegmentation(svm)
+        visualization.Visualize2dSegmentation(svm)
     
-    
+
+def main():
+    logging.warning('Starting classifier.py')  # will print a message to the console
+    ct = ClassifierTester()
+    ct.testKNN()
+    ct.testSVM()
+
+if __name__== "__main__":
+    main()
     
             

@@ -67,20 +67,21 @@ def readSamples(dataset_dir):
             features.label = classifier 
             features.fileLocation = file
             features.uuid = uuid
+            print(features.fileLocation)
             fe = fex.FeatureExtractor(features) 
             features = fe.extractFeatures()
             
-            # # Add Mapping for Easy LookUP of Classification to ID
-            # if features.label not in labelmap:
-            #     idlist = []
-            #     idlist.append(uuid)
-            #     labelmap[str(features.label)] = idlist
-            # else:
-            #     idlist = labelmap[str(features.label)]
-            #     idlist.append(uuid) #add uuid
-            #     labelmap[str(features.label)] = idlist
+            # Add Mapping for Easy LookUP of Classification to ID
+            if features.label not in labelmap:
+                idlist = []
+                idlist.append(uuid)
+                labelmap[str(features.label)] = idlist
+            else:
+                idlist = labelmap[str(features.label)]
+                idlist.append(uuid) #add uuid
+                labelmap[str(features.label)] = idlist
                 
-            # soundfiles[uuid] = features  
+            soundfiles[uuid] = features  
 
 
 def main():
