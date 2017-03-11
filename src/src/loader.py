@@ -14,7 +14,6 @@ soundfiles[id]
 import config
 import helpers
 import feature_extractor as fex
-import logging
 
 soundfiles = {}
 
@@ -57,7 +56,7 @@ def readSamples(dataset_dir):
         classifier = spldir[len(spldir) - 1]
         print("Working on " + classifier  + " classifier right now ... Please wait")
         for file in helpers.listFilesInDirectory(subdir):
-            logging.info("Running against ", file)
+           
             # Check for collisions and create UUID
             uuid = helpers.generateUUID() 
             if uuid in soundfiles: #upon collision create new UUID. Assumes no second collision. 
@@ -71,17 +70,17 @@ def readSamples(dataset_dir):
             fe = fex.FeatureExtractor(features) 
             features = fe.extractFeatures()
             
-            # Add Mapping for Easy LookUP of Classification to ID
-            if features.label not in labelmap:
-                idlist = []
-                idlist.append(uuid)
-                labelmap[str(features.label)] = idlist
-            else:
-                idlist = labelmap[str(features.label)]
-                idlist.append(uuid) #add uuid
-                labelmap[str(features.label)] = idlist
+            # # Add Mapping for Easy LookUP of Classification to ID
+            # if features.label not in labelmap:
+            #     idlist = []
+            #     idlist.append(uuid)
+            #     labelmap[str(features.label)] = idlist
+            # else:
+            #     idlist = labelmap[str(features.label)]
+            #     idlist.append(uuid) #add uuid
+            #     labelmap[str(features.label)] = idlist
                 
-            soundfiles[uuid] = features  
+            # soundfiles[uuid] = features  
 
 
 def main():
